@@ -24,9 +24,9 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        ArrayList<String> dupplications = new ArrayList<>();
+        ArrayList<String> duplications = new ArrayList<>();
         ArrayList<String> whitelistedFound = new ArrayList<>();
-        boolean dup = false;
+        boolean dupFound = false;
         out.println("Insert a sentence for analysis");
         input = sc.nextLine();
         String[] words = input.split("\\s");
@@ -34,8 +34,8 @@ public class Main {
             char[] inputChars = s.toCharArray();
             for (int i = 0; i < inputChars.length - 1; i++) {
                 if (inputChars[i] == inputChars[i + 1] && inputChars[i] != ' ') {
-                    dup = true;
-                    dupplications.add(s);
+                    duplications.add(s);
+                    dupFound = true;
                     break;
                 }
             }
@@ -44,8 +44,13 @@ public class Main {
                 break;
             }
         }
-        if (dup) {
-            out.println(dupplications + " were found with double letters while " + whitelistedFound + " are whitelisted!");
+
+        String whitelisted_string = whitelistedFound.size() > 0 ? whitelistedFound.toString() : "none";
+
+        if (dupFound) {
+            out.println(duplications + " were found with double letters while " + whitelisted_string + " are whitelisted!");
+        } else {
+            out.println("No duplications found!");
         }
     }
 }
