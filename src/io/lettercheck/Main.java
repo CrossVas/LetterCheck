@@ -24,36 +24,28 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        ArrayList<String> dupplications = new ArrayList<>();
         ArrayList<String> whitelistedFound = new ArrayList<>();
-        int dup_index = 0;
-        String status = "";
         boolean dup = false;
         out.println("Insert a sentence for analysis");
         input = sc.nextLine();
         String[] words = input.split("\\s");
         for (String s : words) {
-            status = "Correct!";
             char[] inputChars = s.toCharArray();
             for (int i = 0; i < inputChars.length - 1; i++) {
-                if (!whiteList.contains(s.toLowerCase())) {
-                    if (inputChars[i] == inputChars[i + 1] && inputChars[i] != ' ') {
-                        dup = true;
-                        status = "Duplicate!";
-                        dup_index++;
-                        break;
-                    }
-                }
-                if (whiteList.contains(s.toLowerCase())) {
-                    whitelistedFound.add(s);
-                    status = "Whitelisted - Correct!";
+                if (inputChars[i] == inputChars[i + 1] && inputChars[i] != ' ') {
+                    dup = true;
+                    dupplications.add(s);
                     break;
                 }
             }
-            out.println(s + " : " + status);
+            if (whiteList.contains(s.toLowerCase())) {
+                whitelistedFound.add(s);
+                break;
+            }
         }
         if (dup) {
-            out.println("Wrong double letter found in " + dup_index + " words!");
+            out.println(dupplications + " were found with double letters while " + whitelistedFound + " are whitelisted!");
         }
-        out.println("Whitelisted words found: " + whitelistedFound);
     }
 }
