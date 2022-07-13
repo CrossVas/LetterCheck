@@ -36,12 +36,10 @@ public class Main {
                 if (inputChars[i] == inputChars[i + 1] && inputChars[i] != ' ') {
                     duplications.add(s);
                     dupFound = true;
-                    break;
                 }
             }
             if (whiteList.contains(s.toLowerCase())) {
                 whitelistedFound.add(s);
-                break;
             }
         }
 
